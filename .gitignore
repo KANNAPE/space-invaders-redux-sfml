@@ -3,3 +3,7 @@
 x64/Debug/
 
 SpaceInvadersRedux/x64/
+
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
