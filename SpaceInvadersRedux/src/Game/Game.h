@@ -1,86 +1,31 @@
-#pragma once
-#include <SFML/Graphics.hpp>
-#include "Player/Player.h"
+#ifndef __GAME_H__
+#define __GAME_H__
+
+#include <vector>
+#include <stack>
+
+#include "GameObject/GameObjectBase.h"
+#include "GameState/GameStateBase.h"
+
+#include "SFML/Graphics/RenderWindow.hpp"
+
+#define DEFAULT_WINDOW_W 600
+#define DEFAULT_WINDOW_H 800
 
 class Game
 {
 public:
-	enum class State
-	{
-		E_Menu = 0,
-		E_Settings,
-		E_Game,
-		E_Pause,
+	bool initGame();
+	void runGame();
 
-		E_COUNT,
-	};
-
-			Game();
-
-	void	RunGame();
-
-protected:
-	void	ProcessEvents();
-	void	Update(float _deltaTime);
-	void	Render();
+	void processInputs();
+	void update(float delta);
+	void renderFrame();
 
 private:
-	void	ProcessEvents_Menu();
-	//void	ProcessEvents_Settings();
-	//void	ProcessEvents_Game();
-	//void	ProcessEvents_Pause();
+	sf::RenderWindow m_window;
 
-	void	Update_Menu(float _deltaTime);
-	//void	Update_Settings(float _deltaTime);
-	//void	Update_Game(float _deltaTime);
-	//void	Update_Pause(float _deltaTime);
-
-	void	Render_Menu();
-	//void	Render_Settings();
-	//void	Render_Game();
-	//void	Render_Pause();
-
-	// Menu
-	struct MenuState
-	{
-		enum class State
-		{
-			E_Menu_PressStart,
-			E_Menu_NewGame,
-			E_Menu_LoadGame,
-			E_Menu_Credits
-		};
-
-		enum class ButtonType
-		{
-			E_NewGame,
-			E_LoadGame,
-			E_Settings,
-			E_Credits,
-			E_Quit,
-
-			E_COUNT,
-		};
-
-		struct Button
-		{
-			Button(const sf::RectangleShape& shape, const sf::Text& text);
-
-			sf::RectangleShape	m_shape;
-			sf::Text			m_text;
-		};
-
-		MenuState();
-
-		MenuState::State					m_menuState;
-		sf::Font							m_menuTextFont;
-		sf::Text							m_menuTitle;
-		std::vector<Button>					m_menuButtons;
-	};
-
-	sf::RenderWindow	m_sfWindow;
-
-	std::vector<State>	m_states;
-
-	MenuState			m_menu;
+	std::stack<GameStateBase> m_gameStates;
 };
+
+#endif //__GAME_H__

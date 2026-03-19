@@ -1,0 +1,23 @@
+﻿  Game.cpp
+  GameObjectBase.cpp
+  Button.cpp
+  Text.cpp
+  GameStateBase.cpp
+C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameState\GameStateBase.cpp(9,35): error C2259: 'GameObjectBase': cannot instantiate abstract class
+      C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameObject\GameObjectBase.h(14,7):
+      see declaration of 'GameObjectBase'
+      C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameState\GameStateBase.cpp(9,35):
+      due to following members:
+      C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameState\GameStateBase.cpp(9,35):
+      'void sf::Drawable::draw(sf::RenderTarget &,sf::RenderStates) const': is abstract
+      C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\include\SFML\Graphics\Drawable.hpp(66,18):
+      see declaration of 'sf::Drawable::draw'
+  
+  GameStateInGame.cpp
+  GameStateMainMenu.cpp
+  SpaceInvadersRedux.cpp
+C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\SpaceInvadersRedux.cpp(9,7): error C2039: 'RunGame': is not a member of 'Game'
+      C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\Game\Game.h(12,7):
+      see declaration of 'Game'
+  
+  Generating Code...
