@@ -3,10 +3,10 @@
 
 #include "GameStateBase.h"
 
-class GameStateMenu : public GameStateBase
+class GameStateMainMenu : public GameStateBase
 {
 public:
-	GameStateMenu();
+	GameStateMainMenu();
 
 	bool create() override;
 	void update(float delta) override;

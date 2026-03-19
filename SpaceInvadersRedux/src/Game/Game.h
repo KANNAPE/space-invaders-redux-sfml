@@ -25,7 +25,7 @@ public:
 private:
 	sf::RenderWindow m_window;
 
-	std::stack<GameStateBase> m_gameStates;
+	std::stack<GameStateBase*> m_gameStates;
 };
 
 #endif //__GAME_H__

@@ -19,6 +19,7 @@ public:
 	GameStateBase& operator=(const GameStateBase& /*other*/) = default;
 
 	virtual bool create() { return true; }
+	virtual void destroy() {}
 	virtual void update(float /*delta*/) {}
 	
 	virtual void drawObjects(sf::RenderWindow& window);

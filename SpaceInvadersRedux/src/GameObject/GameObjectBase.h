@@ -3,6 +3,7 @@
 
 // Graphics
 #include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 
 
@@ -11,7 +12,7 @@ namespace sf
 	class RenderWindow;
 }
 
-class GameObjectBase : public sf::Drawable
+class GameObjectBase : public sf::Drawable, public sf::Transformable
 {
 public:
 	GameObjectBase() = default;
