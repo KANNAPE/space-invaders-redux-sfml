@@ -12,22 +12,11 @@ namespace sf
 	class RenderWindow;
 }
 
+// Abstract
 class GameObjectBase : public sf::Drawable, public sf::Transformable
 {
 public:
-	GameObjectBase() = default;
-	GameObjectBase(const GameObjectBase& /*other*/) = default;
-	virtual ~GameObjectBase() = default;
-
-	GameObjectBase& operator=(const GameObjectBase& /*other*/) = default;
-
 	virtual void update(float /*delta*/) {}
-
-	// sf::Drawable implementation
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates()) = 0;
-
-protected:
-	//
 };
 
 #endif //__GAME_OBJECT_BASE_H__

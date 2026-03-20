@@ -3,6 +3,11 @@
 #include <iostream>
 
 #include "GameState/GameStateMainMenu.h"
+#include "GameState/GameStateInGame.h"
+
+Game::Game()
+	: m_defaultGameStateClass(GameStateClass::GS_MainMenu)
+{}
 
 bool Game::initGame()
 {
@@ -11,14 +16,21 @@ bool Game::initGame()
 
 	// setup here default settings, read from a file like settings.ini maybe
 
-	GameStateMainMenu menuGameState;
-	if (!menuGameState.create())
+	m_gameStates.resize(GameStateClass::GS_TOTAL);
+
+	m_gameStates[GameStateClass::GS_MainMenu] = new GameStateMainMenu();
+	m_gameStates[GameStateClass::GS_Game] = new GameStateInGame();
+	for (auto* gameState : m_gameStates)
 	{
-		std::cerr << "There was a problem when creation the state" << std::endl;
-		return false;
+		if (!gameState->create())
+		{
+			std::cerr << "There was an issue when creating the game state!" << std::endl;
+			return false;
+		}
 	}
 
-	m_gameStates.push(menuGameState);
+	GameStateBase* defaultGameState = m_gameStates[m_defaultGameStateClass];
+	m_gameStateStack.push(defaultGameState);
 
 	return true;
 }
@@ -29,12 +41,16 @@ void Game::runGame()
 
 	while (m_window.isOpen())
 	{
+		while( const std::optional event = m_window.pollEvent() )
+		{
+			if( event->is<sf::Event::Closed>() )
+				m_window.close();
+		}
+
 		float delta = clock.restart().asSeconds();
 
 		processInputs();
-
 		update(delta);
-
 		renderFrame();
 	}
 }
@@ -49,14 +65,17 @@ void Game::update(float delta)
 	if (m_gameStates.empty())
 		return;
 
-	GameStateBase& gameState = m_gameStates.top();
+	GameStateBase* gameState = m_gameStateStack.top();
 	
-	gameState.update(delta);
+	gameState->update(delta);
 }
 
 void Game::renderFrame()
 {
-	GameStateBase& gameState = m_gameStates.top();
 
-	gameState.drawObjects(m_window);
+	GameStateBase* gameState = m_gameStateStack.top();
+
+	m_window.clear();
+	gameState->drawObjects(m_window);
+	m_window.display();
 }

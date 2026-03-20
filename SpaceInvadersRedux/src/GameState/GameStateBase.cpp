@@ -6,8 +6,8 @@
 
 void GameStateBase::drawObjects(sf::RenderWindow& window)
 {
-	for (auto gameObj : m_gameObjects)
+	for (const auto* gameObj : m_gameObjects)
 	{
-		gameObj->draw(window);
+		window.draw(*gameObj);
 	}
 }
