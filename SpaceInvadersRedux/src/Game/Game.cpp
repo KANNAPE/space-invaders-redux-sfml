@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "Utils/Color.h"
+
 #include "GameState/GameStateMainMenu.h"
 #include "GameState/GameStateInGame.h"
 
@@ -41,12 +43,6 @@ void Game::runGame()
 
 	while (m_window.isOpen())
 	{
-		while( const std::optional event = m_window.pollEvent() )
-		{
-			if( event->is<sf::Event::Closed>() )
-				m_window.close();
-		}
-
 		float delta = clock.restart().asSeconds();
 
 		processInputs();
@@ -57,7 +53,14 @@ void Game::runGame()
 
 void Game::processInputs()
 {
-	//
+	while (const std::optional event = m_window.pollEvent())
+	{
+		// closing event
+		if (event->is<sf::Event::Closed>())
+			m_window.close();
+
+		// mapping events
+	}
 }
 
 void Game::update(float delta)
@@ -72,10 +75,9 @@ void Game::update(float delta)
 
 void Game::renderFrame()
 {
-
 	GameStateBase* gameState = m_gameStateStack.top();
 
-	m_window.clear();
+	m_window.clear(Utils::Color::Grey);
 	gameState->drawObjects(m_window);
 	m_window.display();
 }

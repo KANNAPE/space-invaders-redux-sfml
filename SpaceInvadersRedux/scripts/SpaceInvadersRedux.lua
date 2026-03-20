@@ -1,5 +1,8 @@
 workspace "SpaceInvadersRedux"
 	configurations { "Debug", "Release" }
+	platforms { "x64" }
+	system "Windows"
+	architecture "x64"
 	location "../.."
 
 project "SpaceInvadersRedux"
