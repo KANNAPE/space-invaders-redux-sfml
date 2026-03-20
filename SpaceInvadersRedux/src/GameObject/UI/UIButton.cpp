@@ -12,8 +12,11 @@ UIButton::UIButton()
 UIButton::UIButton(const sf::Vector2f& position)
 	: UIObject(position)
 	, m_title(position)
-	, m_padding({ 10.f, 5.f })
+	, m_padding({ 25.f, 15.f })
 {
+	//m_padding = { 0.f, 0.f };
+
+	m_bounds.setPosition(position);
 	m_bounds.setSize(m_padding);
 	m_bounds.setFillColor(Utils::Color::Transparent);
 	m_bounds.setOutlineColor(Utils::Color::White);
@@ -44,8 +47,10 @@ void UIButton::setTitle(const sf::String& title)
 
 	// Resizing the bounds
 	const auto& text = m_title.getText();
-	const auto& globalBounds = text.getGlobalBounds();
+	auto textBounds = text.getGlobalBounds();
+	
+	m_title.setPosition(getPosition());
+	m_title.move({ m_padding.x / 2.f, 0.f });
 
-	m_bounds.setSize(globalBounds.size + m_padding);
-	m_title.setPosition(getPosition() + m_padding / 2.f);
+	m_bounds.setSize(textBounds.size + m_padding);
 }

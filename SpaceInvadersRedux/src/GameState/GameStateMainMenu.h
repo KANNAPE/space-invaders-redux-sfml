@@ -47,8 +47,8 @@ protected:
 	State m_state;
 
 	// UI
-	UIText m_menuTitle;
-	std::vector<UIButton> m_menuButtons;
+	UIText* m_menuTitle;
+	std::vector<UIButton*> m_menuButtons;
 };
 
 #endif //__GAME_STATE_MENU_H__

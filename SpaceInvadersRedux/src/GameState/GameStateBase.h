@@ -14,8 +14,9 @@ class GameStateBase
 public:
 	virtual ~GameStateBase() = default;
 
-	virtual bool create() { return true; }
-	virtual void destroy() {}
+	virtual bool create();
+	virtual void destroy();
+
 	virtual void update(float /*delta*/) {}
 	
 protected:
