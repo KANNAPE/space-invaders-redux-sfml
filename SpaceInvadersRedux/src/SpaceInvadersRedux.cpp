@@ -6,17 +6,15 @@
 
 int main()
 {
-	Game game;
-
-	if (!game.initGame())
+	if (!g_GameManager->initGame())
 	{
 		std::cerr << "There was an issue when initializing the game manager!" << std::endl;
 		return 1;
 	}
 
-	game.runGame();
+	g_GameManager->runGame();
 
-	game.deinitGame();
+	g_GameManager->deinitGame();
 
 	return 0;
 }

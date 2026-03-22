@@ -10,11 +10,8 @@ class UIButton : public UIObject
 {
 public:
 	UIButton();
-	UIButton(const sf::Vector2f& position);
 	
 	sf::FloatRect getBounds() const override;
-
-	void setPosition(sf::Vector2f newPosition);
 
 	void onSelect() override;
 	void onUnselect() override;

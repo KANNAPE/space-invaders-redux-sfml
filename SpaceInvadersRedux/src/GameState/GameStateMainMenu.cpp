@@ -1,5 +1,8 @@
 #include "GameStateMainMenu.h"
 
+#include "Game/Game.h"
+
+// Graphics
 #include "SFML/Graphics/Font.hpp"
 
 GameStateMainMenu::GameStateMainMenu()
@@ -18,8 +21,6 @@ bool GameStateMainMenu::create()
 
 	m_menuTitle->setString("Space Invaders REDUX");
 	m_menuTitle->setPosition({ 200.f, 100.f });
-
-	m_gameObjects.push_back(m_menuTitle);
 
 	for (int buttonIdx = 0; buttonIdx < static_cast<int>(ButtonType::COUNT); ++buttonIdx)
 	{
@@ -48,7 +49,6 @@ bool GameStateMainMenu::create()
 		}
 		
 		m_menuButtons.push_back(button);
-		m_gameObjects.push_back(button);
 	}
 
 	return true;
@@ -57,4 +57,16 @@ bool GameStateMainMenu::create()
 void GameStateMainMenu::update(float /*delta*/)
 {
 	//
+}
+
+void GameStateMainMenu::onValidateSelection()
+{
+	GameStateBase::onValidateSelection();
+
+	UIObject* selection = getCurrentSelection();
+	if (selection == nullptr)
+		return;
+
+	if (selection == m_menuButtons[(int)ButtonType::NewGame])
+		g_GameManager->pushGameState(GameStateID::GS_Game);
 }

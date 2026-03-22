@@ -19,6 +19,8 @@ public:
 	bool create() override;
 	void update(float delta) override;
 
+	void onValidateSelection() override;
+
 protected:
 	enum class State
 	{

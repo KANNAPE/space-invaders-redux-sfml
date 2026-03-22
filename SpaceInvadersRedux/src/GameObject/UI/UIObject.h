@@ -12,9 +12,6 @@
 class UIObject : public GameObjectBase
 {
 public:
-	UIObject();
-	UIObject(const sf::Vector2f& position);
-
 	void update(float delta) override;
 
 	virtual sf::FloatRect getBounds() const;

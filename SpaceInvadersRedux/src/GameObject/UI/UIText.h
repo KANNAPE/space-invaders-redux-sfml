@@ -6,6 +6,8 @@
 #include "SFML/Graphics/Font.hpp"
 #include "SFML/Graphics/Text.hpp"
 
+#define DEFAULT_FONT_FILE "C:\\Windows\\Fonts\\arial.ttf"
+
 namespace sf
 {
 	class RenderTarget;
@@ -18,7 +20,6 @@ class UIText : public UIObject
 {
 public:
 	UIText();
-	UIText(const sf::Vector2f& position);
 
 	inline const sf::Font& getFont() const { return m_font; }
 	inline const sf::Text& getText() const { return m_text; }

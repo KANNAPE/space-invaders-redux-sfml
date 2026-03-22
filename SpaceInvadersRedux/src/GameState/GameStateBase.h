@@ -22,21 +22,27 @@ public:
 	virtual bool create();
 	virtual void destroy();
 
-	template<class T>
-	T* createObject()
+	virtual void handleEvent(std::optional<sf::Event> event, sf::RenderWindow& window);
+	virtual void update(float delta);
+
+	template<typename T, typename... Args>
+	T* createObject(Args&&... args)
 	{
-		T* newObj = new T;
+		T* newObj = new T(std::forward<Args>(args)...);
 		m_gameObjects.push_back(newObj);
 
-		if (dynamic_cast<UIObject*>(newObj) != nullptr)
+		if constexpr (std::is_base_of_v<UIObject, T>)
 			m_uiObjects.push_back(newObj);
 
 		return newObj;
 	}
 
-	virtual void handleEvent(std::optional<sf::Event> event, sf::RenderWindow& window);
+	// UI callbacks
+	inline UIObject* getCurrentSelection() const { return m_selection; }
 
-	virtual void update(float /*delta*/) {}
+	virtual void onSelectionChanged(UIObject* newSelection);
+	virtual void onValidateSelection();
+	virtual void onValidateBack();
 	
 protected:
 	void drawObjects(sf::RenderWindow& window);

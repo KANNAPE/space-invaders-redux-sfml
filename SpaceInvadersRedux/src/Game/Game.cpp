@@ -7,8 +7,10 @@
 #include "GameState/GameStateMainMenu.h"
 #include "GameState/GameStateInGame.h"
 
+Game* g_GameManager = new Game();
+
 Game::Game()
-	: m_defaultGameStateClass(GameStateClass::GS_MainMenu)
+	: m_defaultGameStateClass(GameStateID::GS_MainMenu)
 {}
 
 bool Game::initGame()
@@ -18,10 +20,10 @@ bool Game::initGame()
 
 	// setup here default settings, read from a file like settings.ini maybe
 
-	m_gameStates.resize(GameStateClass::GS_TOTAL);
+	m_gameStates.resize((int)GameStateID::GS_TOTAL);
 
-	m_gameStates[GameStateClass::GS_MainMenu] = new GameStateMainMenu();
-	m_gameStates[GameStateClass::GS_Game] = new GameStateInGame();
+	m_gameStates[(int)GameStateID::GS_MainMenu] = new GameStateMainMenu();
+	m_gameStates[(int)GameStateID::GS_Game] = new GameStateInGame();
 	for (auto* gameState : m_gameStates)
 	{
 		if (!gameState->create())
@@ -31,7 +33,7 @@ bool Game::initGame()
 		}
 	}
 
-	GameStateBase* defaultGameState = m_gameStates[m_defaultGameStateClass];
+	GameStateBase* defaultGameState = m_gameStates[(int)m_defaultGameStateClass];
 	m_gameStateStack.push(defaultGameState);
 
 	return true;
@@ -92,4 +94,15 @@ void Game::renderFrame()
 	m_window.clear(Utils::Color::Grey);
 	gameState->drawObjects(m_window);
 	m_window.display();
+}
+
+void Game::pushGameState(GameStateID gameStateClass)
+{
+	if (gameStateClass == GameStateID::GS_TOTAL)
+	{
+		std::cerr << "There was an issue when pushing the new game state!" << std::endl;
+		return;
+	}
+
+	m_gameStateStack.push(m_gameStates[(int)gameStateClass]);
 }

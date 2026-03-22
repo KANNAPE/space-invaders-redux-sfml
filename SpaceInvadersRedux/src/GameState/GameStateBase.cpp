@@ -30,20 +30,11 @@ void GameStateBase::handleEvent(std::optional<sf::Event> event, sf::RenderWindow
 			bool isCursorInside = uiObj->getBounds().contains(mousePos);
 			if (isCursorInside && m_selection != uiObj)
 			{
-				uiObj->onSelect();
-
-				// Unselecting and updating selected object
-				if (m_selection != nullptr)
-				{
-					m_selection->onUnselect();
-				}
-				m_selection = uiObj;
+				onSelectionChanged(uiObj);
 			}
 			else if (!isCursorInside && m_selection == uiObj)
 			{
-				uiObj->onUnselect();
-
-				m_selection = nullptr;
+				onSelectionChanged(nullptr);
 			}
 		}
 	}
@@ -53,10 +44,35 @@ void GameStateBase::handleEvent(std::optional<sf::Event> event, sf::RenderWindow
 	{
 		if (m_selection != nullptr)
 		{
-			m_selection->onValidate();
+			onValidateSelection();
 		}
 	}
 }
+
+void GameStateBase::update(float delta)
+{}
+
+void GameStateBase::onSelectionChanged(UIObject* newSelection)
+{
+	// Selecting new selection if it's valid
+	if (newSelection != nullptr)
+		newSelection->onSelect();
+
+	// Unselecting and updating last selected object
+	if (m_selection != nullptr)
+		m_selection->onUnselect();
+
+	m_selection = newSelection;
+}
+
+void GameStateBase::onValidateSelection()
+{
+	if (m_selection != nullptr)
+		m_selection->onValidate();
+}
+
+void GameStateBase::onValidateBack()
+{}
 
 void GameStateBase::drawObjects(sf::RenderWindow& window)
 {

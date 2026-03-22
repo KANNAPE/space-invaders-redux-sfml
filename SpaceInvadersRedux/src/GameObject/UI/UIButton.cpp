@@ -6,17 +6,8 @@
 #include "SFML/Graphics/RenderStates.hpp"
 
 UIButton::UIButton()
-	: UIButton({ 0.f, 0.f })
-{}
-
-UIButton::UIButton(const sf::Vector2f& position)
-	: UIObject(position)
-	, m_title(position)
-	, m_padding({ 25.f, 15.f })
+	: m_padding({ 25.f, 15.f })
 {
-	//m_padding = { 0.f, 0.f };
-
-	m_bounds.setPosition(position);
 	m_bounds.setSize(m_padding);
 	m_bounds.setFillColor(Utils::Color::Transparent);
 	m_bounds.setOutlineColor(Utils::Color::White);
@@ -25,18 +16,7 @@ UIButton::UIButton(const sf::Vector2f& position)
 
 sf::FloatRect UIButton::getBounds() const
 {
-	return sf::FloatRect(m_bounds.getPosition(), m_bounds.getSize());
-}
-
-void UIButton::setPosition(sf::Vector2f position)
-{
-	m_bounds.setPosition(position);
-
-	const auto& text = m_title.getText();
-	auto textBounds = text.getGlobalBounds();
-
-	m_title.setPosition(getPosition());
-	m_title.move({ m_padding.x / 2.f, 0.f });
+	return sf::FloatRect(getPosition(), m_bounds.getSize());
 }
 
 void UIButton::onSelect()
@@ -62,7 +42,6 @@ void UIButton::setTitle(const sf::String& title)
 	const auto& text = m_title.getText();
 	auto textBounds = text.getGlobalBounds();
 	
-	m_title.setPosition(getPosition());
 	m_title.move({ m_padding.x / 2.f, 0.f });
 
 	m_bounds.setSize(textBounds.size + m_padding);
@@ -70,8 +49,8 @@ void UIButton::setTitle(const sf::String& title)
 
 void UIButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	states.transform.translate(getPosition());
+	states.transform *= getTransform();
 
-	target.draw(m_bounds);
-	target.draw(m_title);
+	target.draw(m_bounds, states);
+	target.draw(m_title, states);
 }

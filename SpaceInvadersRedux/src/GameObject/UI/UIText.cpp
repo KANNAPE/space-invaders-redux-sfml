@@ -6,12 +6,7 @@
 #include "SFML/System/String.hpp"
 
 UIText::UIText()
-	: UIText({ 0.f, 0.f })
-{}
-
-UIText::UIText(const sf::Vector2f& position)
-	: UIObject(position)
-	, m_font("C:\\Windows\\Fonts\\arial.ttf")
+	: m_font(DEFAULT_FONT_FILE)
 	, m_text(m_font, "Text")
 {}
 
