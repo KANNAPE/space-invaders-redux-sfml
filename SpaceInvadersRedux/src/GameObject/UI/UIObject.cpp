@@ -1,7 +1,6 @@
 #include "UIObject.h"
 
 UIObject::UIObject()
-	: m_isHovered(false)
 {}
 
 UIObject::UIObject(const sf::Vector2f& position)
@@ -17,4 +16,9 @@ void UIObject::update(float delta)
 	// checking if hovered / clicked on
 
 	// calling corresponding callbacks
+}
+
+sf::FloatRect UIObject::getBounds() const
+{
+	return sf::FloatRect();
 }

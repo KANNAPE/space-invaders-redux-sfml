@@ -27,6 +27,7 @@ public:
 
 	bool initGame();
 	void runGame();
+	void deinitGame();
 
 	void processInputs();
 	void update(float delta);

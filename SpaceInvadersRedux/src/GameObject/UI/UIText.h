@@ -23,11 +23,13 @@ public:
 	inline const sf::Font& getFont() const { return m_font; }
 	inline const sf::Text& getText() const { return m_text; }
 
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	sf::FloatRect getBounds() const override;
 
 	void setString(const sf::String& text);
 
 protected:
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 	sf::Font m_font;
 	sf::Text m_text;
 };

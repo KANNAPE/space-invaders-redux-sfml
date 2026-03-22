@@ -9,6 +9,7 @@
 
 namespace sf
 {
+	class Event;
 	class RenderWindow;
 }
 
@@ -16,7 +17,14 @@ namespace sf
 class GameObjectBase : public sf::Drawable, public sf::Transformable
 {
 public:
+	GameObjectBase();
+
+	inline bool isVisible() const { return m_isVisible; }
+
 	virtual void update(float /*delta*/) {}
+
+protected:
+	bool m_isVisible;
 };
 
 #endif //__GAME_OBJECT_BASE_H__

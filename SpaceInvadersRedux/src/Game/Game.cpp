@@ -51,8 +51,19 @@ void Game::runGame()
 	}
 }
 
+void Game::deinitGame()
+{
+	for (auto* gameState : m_gameStates)
+	{
+		gameState->destroy();
+		delete gameState;
+	}
+}
+
 void Game::processInputs()
 {
+	GameStateBase* gameState = m_gameStateStack.top();
+
 	while (const std::optional event = m_window.pollEvent())
 	{
 		// closing event
@@ -60,6 +71,7 @@ void Game::processInputs()
 			m_window.close();
 
 		// mapping events
+		gameState->handleEvent(event, m_window);
 	}
 }
 

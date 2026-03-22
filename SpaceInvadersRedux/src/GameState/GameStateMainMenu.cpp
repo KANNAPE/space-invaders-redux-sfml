@@ -4,6 +4,7 @@
 
 GameStateMainMenu::GameStateMainMenu()
 	: m_state(State::MainMenu)
+	, m_menuTitle(nullptr)
 {}
 
 bool GameStateMainMenu::create()
@@ -13,7 +14,7 @@ bool GameStateMainMenu::create()
 
 	m_state = State::MainMenu;
 
-	m_menuTitle = new UIText;
+	m_menuTitle = createObject<UIText>();
 
 	m_menuTitle->setString("Space Invaders REDUX");
 	m_menuTitle->setPosition({ 200.f, 100.f });
@@ -22,7 +23,8 @@ bool GameStateMainMenu::create()
 
 	for (int buttonIdx = 0; buttonIdx < static_cast<int>(ButtonType::COUNT); ++buttonIdx)
 	{
-		UIButton* button = new UIButton({ 200.f, 150.f + 50.f * buttonIdx });
+		UIButton* button = createObject<UIButton>();
+		button->setPosition({ 200.f, 150.f + 50.f * buttonIdx });		
 		
 		switch (static_cast<ButtonType>(buttonIdx))
 		{

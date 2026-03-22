@@ -12,14 +12,19 @@ public:
 	UIButton();
 	UIButton(const sf::Vector2f& position);
 	
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	sf::FloatRect getBounds() const override;
+
+	void setPosition(sf::Vector2f newPosition);
 
 	void onSelect() override;
 	void onUnselect() override;
+	void onValidate() override;
 
 	void setTitle(const sf::String& title);
 
 protected:
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 	UIText m_title;
 
 	sf::RectangleShape m_bounds;

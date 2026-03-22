@@ -15,14 +15,19 @@ UIText::UIText(const sf::Vector2f& position)
 	, m_text(m_font, "Text")
 {}
 
-void UIText::draw(sf::RenderTarget& target, sf::RenderStates states) const
+sf::FloatRect UIText::getBounds() const
 {
-	states.transform.translate(getPosition());
-
-	target.draw(m_text, states);
+	return m_text.getGlobalBounds();
 }
 
 void UIText::setString(const sf::String& text)
 {
 	m_text.setString(text);
+}
+
+void UIText::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	states.transform.translate(getPosition());
+
+	target.draw(m_text, states);
 }

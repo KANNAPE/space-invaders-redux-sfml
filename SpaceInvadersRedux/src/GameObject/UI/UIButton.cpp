@@ -23,12 +23,20 @@ UIButton::UIButton(const sf::Vector2f& position)
 	m_bounds.setOutlineThickness(1.f);
 }
 
-void UIButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
+sf::FloatRect UIButton::getBounds() const
 {
-	states.transform.translate(getPosition());
+	return sf::FloatRect(m_bounds.getPosition(), m_bounds.getSize());
+}
 
-	target.draw(m_bounds);
-	target.draw(m_title);
+void UIButton::setPosition(sf::Vector2f position)
+{
+	m_bounds.setPosition(position);
+
+	const auto& text = m_title.getText();
+	auto textBounds = text.getGlobalBounds();
+
+	m_title.setPosition(getPosition());
+	m_title.move({ m_padding.x / 2.f, 0.f });
 }
 
 void UIButton::onSelect()
@@ -39,6 +47,11 @@ void UIButton::onSelect()
 void UIButton::onUnselect()
 {
 	m_bounds.setFillColor(Utils::Color::Transparent);
+}
+
+void UIButton::onValidate()
+{
+	m_bounds.setFillColor(Utils::Color::Red);
 }
 
 void UIButton::setTitle(const sf::String& title)
@@ -53,4 +66,12 @@ void UIButton::setTitle(const sf::String& title)
 	m_title.move({ m_padding.x / 2.f, 0.f });
 
 	m_bounds.setSize(textBounds.size + m_padding);
+}
+
+void UIButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	states.transform.translate(getPosition());
+
+	target.draw(m_bounds);
+	target.draw(m_title);
 }
