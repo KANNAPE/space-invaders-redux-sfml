@@ -12,8 +12,6 @@
 class UIObject : public GameObjectBase
 {
 public:
-	void update(float delta) override;
-
 	virtual sf::FloatRect getBounds() const;
 
 	virtual void onSelect() {}

@@ -6,21 +6,27 @@
 
 #include "SFML/Graphics/CircleShape.hpp"
 
-struct PlayerObject : public GameObjectBase
+namespace sf
 {
-	PlayerObject();
+	class Event;
+}
 
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
-	sf::CircleShape m_shape;
-};
+class Player;
+class Bullet;
 
 class GameStateInGame : public GameStateBase
 {
 public:
+	GameStateInGame();
+
 	bool create() override;
 
-	PlayerObject* m_player{ nullptr };
+	void handleEvent(std::optional<sf::Event> event, sf::RenderWindow& window) override;
+
+	Player* m_player;
+
+	int m_bulletIdx;
+	std::vector<Bullet*> m_bulletPool;
 };
 
 #endif //__GAME_STATE_IN_GAME_H__

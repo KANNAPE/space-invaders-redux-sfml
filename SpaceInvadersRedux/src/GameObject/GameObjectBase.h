@@ -6,10 +6,8 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 
-
 namespace sf
 {
-	class Event;
 	class RenderWindow;
 }
 
@@ -20,6 +18,7 @@ public:
 	GameObjectBase();
 
 	inline bool isVisible() const { return m_isVisible; }
+	inline void setVisible(float visible) { m_isVisible = visible;  }
 
 	virtual void update(float /*delta*/) {}
 

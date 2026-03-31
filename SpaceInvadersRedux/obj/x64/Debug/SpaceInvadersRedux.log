@@ -1,2 +1,5 @@
-﻿  GameStateInGame.cpp
+﻿  GameStateBase.cpp
+  GameStateInGame.cpp
+  Game.cpp
+  Generating Code...
   SpaceInvadersRedux.vcxproj -> C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\x64\Debug\SpaceInvadersRedux.exe

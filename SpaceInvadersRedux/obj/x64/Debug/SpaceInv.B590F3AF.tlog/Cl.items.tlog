@@ -1,5 +1,8 @@
 C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\Game\Game.cpp;C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\obj\x64\Debug\Game.obj
+C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameObject\Alien\Alien.cpp;C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\obj\x64\Debug\Alien.obj
 C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameObject\GameObjectBase.cpp;C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\obj\x64\Debug\GameObjectBase.obj
+C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameObject\Player\Bullet.cpp;C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\obj\x64\Debug\Bullet.obj
+C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameObject\Player\Player.cpp;C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\obj\x64\Debug\Player.obj
 C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameObject\UI\UIButton.cpp;C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\obj\x64\Debug\UIButton.obj
 C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameObject\UI\UIObject.cpp;C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\obj\x64\Debug\UIObject.obj
 C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\src\GameObject\UI\UIText.cpp;C:\Users\berge\Travail\SFMLProjects\SpaceInvadersRedux\SpaceInvadersRedux\obj\x64\Debug\UIText.obj

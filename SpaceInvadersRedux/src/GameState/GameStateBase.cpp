@@ -39,7 +39,7 @@ void GameStateBase::handleEvent(std::optional<sf::Event> event, sf::RenderWindow
 		}
 	}
 
-	// Mouse clicked
+	// mouse clicked
 	if (const auto* mouseClicked = event->getIf<sf::Event::MouseButtonReleased>())
 	{
 		if (m_selection != nullptr)
@@ -50,7 +50,10 @@ void GameStateBase::handleEvent(std::optional<sf::Event> event, sf::RenderWindow
 }
 
 void GameStateBase::update(float delta)
-{}
+{
+	for (auto* gameObj : m_gameObjects)
+		gameObj->update(delta);
+}
 
 void GameStateBase::onSelectionChanged(UIObject* newSelection)
 {

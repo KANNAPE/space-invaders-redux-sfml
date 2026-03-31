@@ -47,7 +47,7 @@ public:
 protected:
 	void drawObjects(sf::RenderWindow& window);
 
-	std::vector<const GameObjectBase*> m_gameObjects;
+	std::vector<GameObjectBase*> m_gameObjects;
 
 	std::vector<UIObject*> m_uiObjects;
 	UIObject* m_selection;
